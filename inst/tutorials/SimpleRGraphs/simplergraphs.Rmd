@@ -12,11 +12,10 @@ library(WILD7150)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-
 ## Purpose
 
 This tutorial was adapted from [Frank McCown's](https://sites.harding.edu/fmccown/r/) site on simple graphs in R. Once complete, students should be familiar with the **following learning objectives**:
-
+ 
 * Learn to create different graphs using basic R functions
   + Line Graphs
   + Bar Graphs 
@@ -42,11 +41,9 @@ If you have any questions, or find any issues, please let me know at adc0032@aub
 
 *Here's a simple exercise with an empty code chunk provided for entering the answer.*
 
-### Demo Exercise 
+Write the R code required to add two plus two:
 
-*Here's a simple demonstration with an empty code chunk provided for entering the answer.*
-
-```{r two-plus-two, exercise=TRUE, exercise.lines = 2}
+```{r two-plus-two, exercise=TRUE, exercise.lines = 1}
 
 ```
 
@@ -58,16 +55,20 @@ If you have any questions, or find any issues, please let me know at adc0032@aub
 
 Easy enough, right?! 
 
-You will be using datasets borrowed from [Assignment #6](http://webhome.auburn.edu/~tds0009/WILD7150/Assignments/Assign6.html) in [Dr. Todd Steury's WILD 7150 course](http://webhome.auburn.edu/~tds0009/wild7150.html). This tutorial uses Dataset #3. Go back and use Datasets #1 and #2 with the commands you've used in this tutorial to produce similar plots. 
+You will be using datasets borrowed from
+[Dr. Todd Steury's WILD 7150 course](http://webhome.auburn.edu/~tds0009/wild7150.html) in a package I created called "WILD7150".  This tutorial uses `agingtrees` (dataset #3 from Dr. Steury's website). Go back and use `pickygrasshoppers` and `hormonaltrees` (datasets #1 and #2) with the commands you've used in this tutorial to produce similar plots. 
 
-Here's a quick look at dataset #3. This dataset contains tree height at different ages for 16 individual trees. 
+### Exercise with Hint 
+
+Here's a quick look at `agingtrees`.
+This dataset contains tree height at different ages for 16 individual trees. 
 
 Modify the following code to limit the number of rows printed to 5:
 
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 1}
 agingtrees
 ```
-
+ 
 ```{r print-limit-hint}
 head(agingtrees)
 ```
@@ -76,10 +77,6 @@ head(agingtrees)
 
 Let's say we are interested in looking at tree height for individual 5 at all ages in our data.
 
-
-
-
-
 ## Bar Graphs
 
 Let's say we are interested in looking at tree height for all individuals in our data at age 14.
@@ -87,16 +84,24 @@ Let's say we are interested in looking at tree height for all individuals in our
 ## Pie Graphs
 
 ## Histograms
+
 How about we look at the distribution of heights 
 
 ## Dot Graphs
 
 ## Base Graph Customization
 
-### Exercise with Hint
+### Exercise with Code
 
-*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
 
+Now write a function that adds any two numbers and then call it:
+
+```{r add-function, exercise=TRUE, exercise.lines = 5}
+add <- function() {
+  
+}
+```
 
 
 ### Quiz
