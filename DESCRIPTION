@@ -1,11 +1,15 @@
 Package: SimpleRGraphs
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Simple Graphs in R
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Amanda D. Clark
+Maintainer: Amanda D. Clark <adc0032@auburn.edu>
+Description: Package used to produce plots from (Frank McCown's)[https://sites.harding.edu/fmccown/r/] site, in a walkthrough tutorial.
 Encoding: UTF-8
 LazyData: true
+Suggests: 
+    learnr
+Imports: 
+    WILD7150 (>= 0.1.0)
+Remotes:
+    url::https://github.com/adc0032/WILD7150/blob/master/WILD7150_0.1.0.tgz
