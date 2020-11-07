@@ -1,6 +1,9 @@
 ---
 title: "Simple Graphs in R"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
 runtime: shiny_prerendered
 ---
 
@@ -35,7 +38,9 @@ For lab assignment #8, use dataset #1 and dataset #2 to create graphs similar to
 
 This tutorial package was created in Rstudio using R markdown and integrated with an R shiny interface for an interactive experience.
 
-The interactive code blocks behave just as they would in R. If you get stuck somewhere, use the solution/hint button for guidance!
+This tutorial package is being shared with you in **source** format, which means that editing/moving files with disrupt functionality of the code. **If you have this issue, re-install the package from Github.**  
+
+The interactive code blocks behave just as they would in R. If you get stuck somewhere, use the solution button for guidance!
 
 If you have any questions, or find any issues, please let me know at adc0032@auburn.edu! 
 
@@ -47,7 +52,7 @@ Write the R code required to add two plus two:
 
 ```
 
-```{r two-plus-two-hint}
+```{r two-plus-two-solution}
 2+2
 ```
 
@@ -58,8 +63,6 @@ Easy enough, right?!
 You will be using datasets borrowed from
 [Dr. Todd Steury's WILD 7150 course](http://webhome.auburn.edu/~tds0009/wild7150.html) in a package I created called "WILD7150".  This tutorial uses `agingtrees` (dataset #3 from Dr. Steury's website). Go back and use `pickygrasshoppers` and `hormonaltrees` (datasets #1 and #2) with the commands you've used in this tutorial to produce similar plots. 
 
-### Exercise with Hint 
-
 Here's a quick look at `agingtrees`.
 This dataset contains tree height at different ages for 16 individual trees. 
 
@@ -69,13 +72,137 @@ Modify the following code to limit the number of rows printed to 5:
 agingtrees
 ```
  
-```{r print-limit-hint}
+```{r print-limit-solution}
 head(agingtrees)
 ```
 
 ## Line Graphs
 
+### Subsetting
+
 Let's say we are interested in looking at tree height for individual 5 at all ages in our data.
+
+Modify the following code to subset "individual 5" data into vector `ind5`:
+
+```{r subset-ind5, exercise=TRUE, exercise.eval=FALSE}
+# Define the ind5 vector with a subset of the data for individual 5
+# Within tidyverse are a multitude of packages, here we are using dplyr's filter function
+
+ind5 agingtrees %>% filter(Individual == "")
+ind5
+```
+
+```{r subset-ind5-solution}
+ind5 <- agingtrees %>% filter(Individual == "5")
+ind5
+```
+
+### Plotting
+
+Nice! It looks like we've successfully filtered the dataset to only include data from individual 5 within the vector `ind5`
+
+What about a plot? Run the code below to graph height with default settings:
+
+```{r plot-subset-ind5, exercise=TRUE, exercise.eval=FALSE}
+ind5 <- agingtrees %>% filter(Individual == "5")
+
+# Graph of size values for individual 5
+plot(ind5$Size)
+```
+
+Let's add a title and other details to the graph by personalizing the points with a color and overlaying a line
+
+```{r plot2-subset-ind5, exercise=TRUE, exercise.eval=FALSE}
+ind5 <- agingtrees %>% filter(Individual == "5")
+
+# Graph of size values for individual 5 with customization
+plot(ind5$Size, type = "o", col = "orange")
+
+# Adding a title with customization
+title(main = "Individual 5 Heights", col.main = "blue", font.main = 4)
+```
+
+### Height by Age
+
+Realistically, we are not interested in looking at height by themselves, we are interested in height based on age. 
+
+Use `~` to plot *height by age* :
+
+```{r plot3-subset-ind5, exercise=TRUE, exercise.eval=FALSE, exercise.lines = 8}
+ind5 <- agingtrees %>% filter(Individual == "5")
+
+# Graph of size values for each age value for individual 5 with customization
+plot(ind5$Size, type = "o", col = "orange")
+
+# Adding a title with customization
+title(main = "Tree ID 5 Heights for Age(YR) 10 to 20 ", col.main = "blue", font.main = 4)
+```
+
+```{r plot3-subset-ind5-solution}
+ind5 <- agingtrees %>% filter(Individual == "5")
+plot(ind5$Size~ind5$Age, type = "o", col = "orange")
+title(main = "Tree ID 5 Heights for Age(YR) 10 to 20 ", col.main = "blue", font.main = 4)
+```
+
+*If you are wondering why it looks the same (except for the x axis), it is because the data is organized by increasing age, and therefore matches the index of values.*
+
+
+### Adding A Tree
+
+Let's add data from tree ID 2 to our graph:
+
+```{r two-trees, exercise=TRUE, exercise.eval=FALSE, exercise.lines = 10}
+ind5 <- agingtrees %>% filter(Individual == "5")
+# Subset data for tree ID 2
+ind2 <- 
+
+plot(ind5$Size~ind5$Age, type = "o", col = "orange")
+# Graph ind2 with grey lines and square points
+lines(ind2$Size~ind2$Age, type="o", pch=22, lty=2, col="grey")
+
+title(main = "Tree ID 5 Heights for Age(YR) 10 to 20 ", col.main = "blue", font.main = 4)
+```
+
+```{r two-trees-solution}
+ind5 <- agingtrees %>% filter(Individual == "5")
+ind2 <- agingtrees %>% filter(Individual == "2")
+
+plot(ind5$Size~ind5$Age, type = "o", col = "orange")
+lines(ind2$Size~ind2$Age, type="o", pch=22, lty=2, col="grey")
+title(main = "Tree ID's 2 & 5 Heights for Age(YR) 10 to 20 ", col.main = "blue", font.main = 4)
+```
+
+### Adding more data and some PIZZAZZ!
+
+These are base R graphs (and there is nothing wrong with that, hehe), but they need a bit of sprucing (editing colors, shapes, labels, legends, etc.)
+
+This time we are going to subset data from 3 trees, and update colors, shapes, and axis titles.
+
+Here I'm utilizing `tidyverse` packages to create a new format for plotting:
+
+```{r final-subset,exercise=TRUE, exercise.eval=FALSE, exercise.lines = 13 }
+# vectoring data I am interested in, and making a new tibble (data frame)
+ind2 <- agingtrees %>% filter(Individual == "2") %>% select(Size) %>% tibble() %>% rename(Tree2 = Size)
+ind5 <- agingtrees %>% filter(Individual == "5") %>% select(Size) %>% tibble() %>% rename(Tree5 = Size)
+
+# Here we are: piping agingtrees to filter by individual, selecting the size column, converting to data frame, and renaming the column
+ind13 <- agingtrees %>% filter(Individual == "13") %>%
+          select(Size) %>% tibble() %>% rename(Tree13 = Size)
+
+# Combining the three trees we want to plot into a single tibble santrees
+santrees <- bind_cols(ind2, ind5, ind13)
+head(santrees)
+```
+
+
+Now that we have the data in a nice format while maintaining the order of the data(there are cleaner ways to do this), let's prepare our plot. Make sure to fill in missing code in order to run it!!
+
+```{r final-plot,exercise=TRUE, exercise.eval=FALSE, exercise.lines = 15}
+# Determine the largest y value in the dataset. Don't you hate when your axes are too short!?
+mxy <- max(sun)
+
+```
+
 
 ## Bar Graphs
 
@@ -89,7 +216,7 @@ How about we look at the distribution of heights
 
 ## Dot Graphs
 
-## Base Graph Customization
+## Other Base Graph Customization
 
 ### Exercise with Code
 
