@@ -538,6 +538,22 @@ hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 
      xlab = "Height (Meters)")
 ```
 
+### Plotting Means
+
+I'd like to add the mean value for the data to the histogram. We can accomplish this with the `abline` function:
+```{r abl-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup =  "fin-bar-subset"}
+allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
+
+# Get mean of allyr into an object
+mntree<- mean(allyr)
+
+hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 12,15,& 17",
+     xlab = "Height (Meters)")
+# Use abline to add the mean to the histogram; using "v =" because we want a vertical line
+abline(v = mntree, col = colpkr[36], lwd = 2)
+```
+
+
 ### Choosing Bins
 Build on the previous graph, this time forcing each height into its own bin by setting `breaks` to the max height in the data (you also may want to adjust the `ylim` values):
 ```{r fin-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-bar-subset"}
@@ -567,6 +583,7 @@ hist(allyr, col=heat.colors(mxy), breaks=mxy, ylim=c(0,20), xlab = "Height (Mete
    xlim=c(0,mxy), right=F, main="Histogram of Heights for Ages 12,15,& 17", las=1)
 
 ```
+
 
 ### Histograms from Randomized Data
 
