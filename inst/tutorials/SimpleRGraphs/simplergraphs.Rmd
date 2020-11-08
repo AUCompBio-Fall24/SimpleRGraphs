@@ -8,10 +8,16 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-library(learnr)
+# Package for setup
 library(devtools)
+# Package for the Tutorial
+library(learnr)
+# Package of packages for manipulating datasets
 library(tidyverse)
+# Data Packaged
 library(WILD7150)
+# Index of color options in R
+colpkr <- colors()
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -174,82 +180,480 @@ title(main = "Tree ID's 2 & 5 Heights for Age(YR) 10 to 20 ", col.main = "blue",
 
 ### Adding more data and some PIZZAZZ!
 
-These are base R graphs (and there is nothing wrong with that, hehe), but they need a bit of sprucing (editing colors, shapes, labels, legends, etc.)
+These are base R graphs (and there is nothing wrong with that, hehe), but they need a bit of sprucing (editing colors, shapes, labels, legends, etc.). **See my comment on getting colors below!**
 
 This time we are going to subset data from 3 trees, and update colors, shapes, and axis titles.
 
-Here I'm utilizing `tidyverse` packages to create a new format for plotting:
+In the background for this upcoming chunk, I'm utilizing `tidyverse` packages to select height for three different trees and organizing them into a 
+new data frame. To see how this was performed, **carefully** navigate to line 185 in the `simplegraphs.Rmd` file located in `inst/tutorials/SimpleRGraphs`
 
-```{r final-subset,exercise=TRUE, exercise.eval=FALSE, exercise.lines = 13 }
+```{r fin-line-subset}
 # vectoring data I am interested in, and making a new tibble (data frame)
-ind2 <- agingtrees %>% filter(Individual == "2") %>% select(Size) %>% tibble() %>% rename(Tree2 = Size)
-ind5 <- agingtrees %>% filter(Individual == "5") %>% select(Size) %>% tibble() %>% rename(Tree5 = Size)
+ind2 <- agingtrees %>% filter(Individual == "2") %>% select(Size, Tree2 = Size)
+ind5 <- agingtrees %>% filter(Individual == "5") %>% select(Size, Tree5 = Size)
 
-# Here we are: piping agingtrees to filter by individual, selecting the size column, converting to data frame, and renaming the column
+# Here we are: piping agingtrees to filter by individual, selecting the size column and renaming the column
 ind13 <- agingtrees %>% filter(Individual == "13") %>%
-          select(Size) %>% tibble() %>% rename(Tree13 = Size)
+          select(Size, Tree13 = Size)
 
-# Combining the three trees we want to plot into a single tibble santrees
+# Combining the three trees we want to plot into a single data frame santrees
 santrees <- bind_cols(ind2, ind5, ind13)
+```
+
+Let's check out the new data frame called `santrees` that was created in the background, and use it to add some finishing touches to our plot
+
+```{r final-plot,exercise=TRUE, exercise.eval=FALSE, exercise.lines = 20, exercise.setup = "fin-line-subset"}
+# Check out santrees
 head(santrees)
-```
 
-
-Now that we have the data in a nice format while maintaining the order of the data(there are cleaner ways to do this), let's prepare our plot. Make sure to fill in missing code in order to run it!!
-
-```{r final-plot,exercise=TRUE, exercise.eval=FALSE, exercise.lines = 15}
 # Determine the largest y value in the dataset. Don't you hate when your axes are too short!?
-mxy <- max(sun)
+mxy <- max(santrees)
 
+# Let's make a vector holding colors for Tree 2, 5, and 13
+# run colors() in your local rstudio console to check out the 657 options!
+  # You can also run colpkr (I put colors() into an object with that name!) and call colors by   index
+plotcols <- c("slategray2","seagreen2","orange1")
+
+# Create a base graphic incorporating mxy, with no axes and labels
+plot(santrees$Tree2, type = "o", col = plotcols[1], ylim = c(0,mxy), axes = FALSE, ann = FALSE)
+
+# Create x-axis using Age 10 - 20; side 1 = x axis
+axis(1, at=1:11, lab=c(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20))
+
+# Create y-axis, displaying tick marks at every 6th mark. 
+  # 6*0:max_y is the same as c(0,6,12,18); side 2 is the y axis
+axis(2, las=1, at=6*0:mxy)
+
+# Put a box around the graph
+box()
+
+# Let's add Tree 5 and 13
+lines(santrees$Tree5, type = "o", col = plotcols[2],
+      pch=22,lty=2)
+
+lines(santrees$Tree13, type = "o", col = plotcols[3],
+      pch=23,lty=3)
+
+
+# Finally, let's label the rest of the graph and add a legend
+title(main = "Tree Heights Across 11 Years ", col.main = "navy", font.main = 4)
+title(xlab = "Age(Years)", col.lab="navy")
+title(ylab = "Height(Meters)", col.lab="navy")
+legend("bottomright", names(santrees), col=plotcols, lty = 1:3)
 ```
 
+This code accomplishes the same goal. 
+Remove any unused objects, and use line 10 to ensure that data from the third tree is included in the graph:
 
+```{r final-plot-2, exercise=TRUE, exercise.eval=FALSE, exercise.lines = 15, exercise.setup = "fin-line-subset"}
+mxy <- max(santrees)
+plotcols <- c("slategray2","seagreen2","orange1")
+plot(santrees$Tree2, type = "l", col = plotcols[1], ylim = range(santrees), 
+     xlab = "Age (Years)", ylab = "Height (Meters)", axes = FALSE, col.lab="navy",
+     ann = TRUE, cex.lab = 1, lwd = 3)
+axis(1, at=1:11, las=2, lab=c(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20))
+axis(2, las=1, at=8*0:mxy)
+box()
+lines(santrees$Tree5, type = "l", col = plotcols[2],lty=2, lwd = 3)
+lines()
+title(main = "Tree Heights Across 11 Years ", col.main = "navy", font.main = 4)
+legend("bottomright", names(santrees), cex=0.8, col=plotcols, 
+   lty=1:3, lwd=3, bty="n")
+```
+
+```{r final-plot-2-hint}
+
+plotcols <- c("slategray2","seagreen2","orange1")
+plot(santrees$Tree2, type = "l", col = plotcols[1], ylim = range(santrees), 
+     xlab = "Age (Years)", ylab = "Height (Meters)", axes = FALSE, col.lab="navy",
+     ann = TRUE, cex.lab = 1, lwd = 3)
+axis(1, at=1:11, las=2, lab=c(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20))
+axis(2, las=1, at=8*0:mxy)
+box()
+lines(santrees$Tree5, type = "l", col = plotcols[2],lty=2, lwd = 3)
+lines(santrees$Tree5, type = "l", col = plotcols[3],lty=3, lwd = 3)
+title(main = "Tree Heights Across 11 Years ", col.main = "navy", font.main = 4)
+legend("bottomright", names(santrees), cex=0.8, col=plotcols, 
+   lty=1:3, lwd=3, bty="n")
+```
 ## Bar Graphs
 
-Let's say we are interested in looking at tree height for all individuals in our data at age 14.
+### Height for a Single Tree
+```{r base-bar, exercise=TRUE, exercise.eval=FALSE}
+ind5 <- agingtrees %>% filter(Individual == "5")
+
+# Create a bar graph of the heights from Tree ID 5 
+barplot(ind5$Size)
+```
+
+Use the `main` `xlab` and `ylab` functions to add important labels to the graph, and use `seq` to clean up `names.arg` and `density`:
+```{r base-bar2, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-line-subset"}
+# Cleaning up code, labeling axes, and titling graph
+barplot(santrees$Tree5,
+        names.arg=c(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 
+        border="blue", density=c(5,10,15,20,25,30,35,40,45,50,55))
+
+```
+
+```{r base-bar2-hint}
+barplot(santrees$Tree5, main="Tree 5 Heights Across 11 Years", xlab="Age (Years)",  
+   ylab="Height (Meters)", names.arg=c(seq(10,20,1)), 
+   border="blue", density=c(seq(2,22,2)))
+
+```
+
+### Height by Year for Three Trees
+
+Let's look at multiple trees with `santrees` we made in the previous section:
+
+```{r bar-by-tree, exercise=TRUE, exercise.eval=FALSE}
+
+# Converting santrees to a matrix, using beside=TRUE to prevent stacking, using rainbow color scales for bar fill
+barplot(as.matrix(santrees), main="Trees", ylab= "Height (Meters)",
+   beside=TRUE, col=rainbow(11))
+
+# Place the legend at the top-left corner, filling with the rainbow color scales 
+legend("topleft", c("10Y","11Y","12Y","13Y","14Y","15Y","16Y","17Y","18Y","19Y","20Y"), cex=0.6, 
+    fill=rainbow(11))
+```
+
+### Height by Individual for Three Ages 
+
+So far, we've grouped the data by individual tree. Let's group the data by ages of trees.  
+
+As with `santrees`, I've gone ahead and made a data frame of tree sizes at three chosen ages (source lines 309-318) called `tresages`. 
+
+```{r fin-bar-subset}
+# vectoring data I am interested in, and making a new tibble (data frame)
+yr12 <- agingtrees %>% filter(Age == "12") %>% select(Size, Yr12 = Size)
+yr15 <- agingtrees %>% filter(Age == "15") %>% select(Size, Yr15 = Size)
+yr19 <- agingtrees %>% filter(Age == "19") %>% select(Size, Yr19 = Size)
+
+
+# Combining the three ages we want to plot into a single data frame tresages
+tresages <- bind_cols(yr12, yr15, yr19)
+```
+
+Update the code below to ensure the *y-axis limits are appropriate for the data*, 
+*remove the box around the legend with `bty`*, and *play around with the `ncol` variable in the legend assignment to eliminate any overlap* of legend information with bars. Finally, remember that *`barplot` requires that the data be in a vector or matrix*: 
+
+```{r fin-bar-plot, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-bar-subset"}
+# Checking out tresages 
+head(tresages)
+
+# Creating a plot for tresages, converting to matrix
+barplot(tresages, main="Tree Height", ylab= "Height (Meters)",
+   beside=TRUE, col=rainbow(16))
+
+# Place the legend at the top-left corner with no frame, using rainbow colors
+legend("topleft", ncol = 2,
+       c("Tree1","Tree2","Tree3","Tree4","Tree5","Tree6","Tree7","Tree8",
+         "Tree9","Tree10","Tree11", "Tree12", "Tree13", "Tree14", "Tree15", "Tree16"), 
+       cex=0.6, fill=rainbow(16))
+```
+
+```{r fin-bar-plot-hint}
+head(tresages)
+
+barplot(as.matrix(tresages), main="Tree Height", ylab= "Height (Meters)",
+   beside=TRUE, col=rainbow(16), ylim = c(0,max(sanages)))
+legend("topleft", ncol = 4,
+       c("Tree1","Tree2","Tree3","Tree4","Tree5","Tree6","Tree7","Tree8",
+         "Tree9","Tree10","Tree11", "Tree12", "Tree13", "Tree14", "Tree15", "Tree16"), 
+       cex=0.6, bty="n", fill=rainbow(16))
+```
+
+### Stacked Bars
+
+We've looked at the data with single and grouped bars, let's try out a stacked bar graph.
+See what happens when you set `beside` to `FALSE` or remove it: 
+
+```{r stacked-bar, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-bar-subset"}
+# Creating a plot for tresages, converting to matrix
+barplot(as.matrix(tresages), main="Tree Height", ylab= "Height (Meters)",
+   beside = TRUE, col=rainbow(16))
+
+# Check out usage of paste command when you don't want to make long lists of names and such.
+legend("topleft", ncol = 4,
+       c(paste0("Tree", seq(1,16))), 
+       cex=0.6, fill=rainbow(16))
+
+```
+
+Later in the tutorial, I will demonstrated adjusting the margins to make room to add the legend adjacent to the graph, so that we don't 
+worry about our legend covering features of our graph.
+
+While we are here, let's try a graph of `santrees` with horizontal bars (this way there will be space for the legend on the graph):
+```{r horiz-bar,exercise=TRUE, exercise.eval=TRUE, exercise.setup = "fin-line-subset"}
+# Creating a plot for tresages, converting to matrix
+barplot(as.matrix(santrees), main="Tree Height", xlab= "Height (Meters)",
+   horiz = TRUE, beside = FALSE, col=rainbow(16))
+
+# Check out usage of paste command when you don't want to make long lists of names and such.
+legend("bottomright", ncol = 4,
+       c(paste0("Tree", seq(1,16))), 
+       cex=0.6, fill=rainbow(16))
+```
 
 ## Pie Graphs
 
-## Histograms
+Ahh! Good ole pie graph! I fondly remember these being my favorite in primary school, mainly because of the shape, haha. I've grown up and discovered that, often, we (hoomans) aren't that great at interpreting data in a circular format.
 
-How about we look at the distribution of heights 
+Check out this post on [Pie Caveats](https://www.data-to-viz.com/caveat/pie.html) on the site [from-Data-to-Viz](https://www.data-to-viz.com/)
 
-## Dot Graphs
+### Subsetting & Base Graph
 
-## Other Base Graph Customization
+Let's build a pie graphic anyway:
 
-### Exercise with Code
+```{r bad-pie, exercise=TRUE, exercise.eval=FALSE}
+# Subset data for trees at age 15
+age15 <- agingtrees %>% filter(Age == "15")
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+# Creating a pie graph of individual tree heights at age 15
+pie(age15$Size)
+```
 
-Now write a function that adds any two numbers and then call it:
+### Adding Features
 
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
+Add a title, labels, and colors to the pie graph:
+```{r bad-pie-2, exercise=TRUE, exercise.eval=FALSE}
+age15 <- agingtrees %>% filter(Age == "15")
+
+pie(age15$Size, main = , 
+    col = , labels = )
+```
+
+```{r bad-pie-2-hint}
+age15 <- agingtrees %>% filter(Age == "15")
+
+pie(age15$Size, main = "Tree Height at Age 15", 
+    col = rainbow(length(age15$Individual)), labels = c(paste0("Tree", seq(1,16))))
+```
+
+### Percentages
+
+Lastly, let's label the pie graph with percentages instead of tree IDs. 
+Here you will see how to place the legend adjacent to the graphic. Play around with the X,Y coordinates on line 19: 
+
+```{r bad-pie-3, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 20 }
+
+age15 <- agingtrees %>% filter(Age == "15")
+
+# Using a grey scale, ideal for black & white print
+colors <- c(grey.colors(16))
+
+# Calculate the percentage for each tree height, round to 1 decimal place
+age_labels <- round(age15$Size/sum(age15$Size) * 100, 1)
+
+# Pasting '%' after each value
+age_labels <- paste0(age_labels, "%")
+
+# Create a pie chart with defined heading and custom colors
+# and labels
+pie(age15$Size, main="Tree Heights at Age 15", col=colors, labels=age_labels,
+   cex=0.8)
+
+# Create a legend to the right of the graph
+  # Notice that I am not using positions in quotes (i.e., "topleft", "bottom"). What happens if you change x (the first number) to 2?
+legend(1.2, 0.7, c(paste0("Tree", seq(1,16))), cex=0.6, 
+   fill=colors, ncol = 2)
+
 ```
 
 
-### Quiz
+## Dot Graphs
 
-*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+[Dot plots](https://en.wikipedia.org/wiki/Dot_plot_(statistics)) are the some of the most simplistic ways to represent quantitative measurements, categorically. 
 
-Some questions to verify that you understand the purposes of various base and recommended R packages:
+Typically, they work better for smaller amounts of data, but visually are easier to digest 
+than bar and pie graphs - while retaining the same amount of information content.
 
-```{r quiz}
+### Subsetting and Transposing
+
+```{r dot-subtrans, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-bar-subset"}
+# Let's use the tresages subset from before; using t() to transpose the first 6 results from the data frame
+ttres <- t(head(tresages))
+```
+
+### Dot Graph
+
+Here's our graph! The labels are crowded or non-existent, and it's sort of bland (Yikes!).
+
+```{r dot-graph, exercise=TRUE, exercise.eval=TRUE, exercise.setup = "fin-bar-subset"}
+ttres <- t(head(tresages))
+# Create Dot graph
+dotchart(ttres)
+```
+
+### Adding some color
+
+Recall I put all of the possible color options in base R into an object called `colpkr`, 
+so let's call colors by index for this chunk. 
+Add x-axis label, increase the size of the title, and change the circles to triangles:
+
+```{r fin-dot-graph, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-bar-subset"}
+ttres <- t(head(tresages))
+dotchart(ttres, color=c(colpkr[511], colpkr[637], colpkr[493]),
+   main="Dotchart for Trees", cex=0.6)
+```
+
+```{r fin-dot-graph-hint}
+ttres <- t(head(tresages))
+dotchart(ttres, color=c(colpkr[511], colpkr[637], colpkr[493]),
+   main="Dotchart for Trees", cex=0.6,cex.main = 2, pch = 24 , xlab = "Heights (Meters)")
+```
+
+## Histograms
+Histograms help you characterize distribution and normality of your data.
+
+Histograms are among the first summaries created for a fresh dataset. 
+
+### Basic Histograms with WILD7150 Data
+
+Let's look at the distribution of heights for at a single age, using our `tresages` subset: 
+
+```{r base-his, exercise=TRUE, exercise.eval=TRUE, exercise.setup = "fin-bar-subset"}
+# Create a histogram
+hist(tresages$Yr19)
+```
+
+
+How about a distribution of heights across 3 ages? Let's combine heights for all ages in the 
+`tresages` subset and create a histogram, and format the features of the graph:
+
+```{r cat-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-bar-subset"}
+# Concatenate tresages
+allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
+
+# Histogram with Features (color, title, xlabs)
+hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 12,15,& 17",
+     xlab = "Height (Meters)")
+```
+
+### Choosing Bins
+Build on the previous graph, this time forcing each height into its own bin by setting 
+`breaks` to the max height in the data:
+```{r fin-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-bar-subset"}
+allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
+
+# Maximum Y value (height) of allyr
+mxy <-max()
+
+# Single bin histogram with horizontal y-axis labels
+  # using object holding number of heights in data (mxy)
+  # right=F means that the cells are right open intervals,
+  # i.e. from [1 to 2], included values from 1 up until and including (1..1.98,1.99... & 2)
+hist(allyr, col=heat.colors(mxy), breaks=, ylim=c(0,5), xlab = "Height (Meters)",
+   xlim=c(0,mxy), right=F, main="Histogram of Heights for Ages 12,15,& 17", las=1)
+
+```
+
+```{r fin-his-hint}
+allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
+mxy <-max(allyr)
+
+# Single bin histogram with horizontal y-axis labels
+  # using object holding number of heights in data (mxy)
+  # right=F means that the cells are right open intervals,
+  # i.e. from [1 to 2], included values from 1 up until and including (1..1.98,1.99... & 2)
+hist(allyr, col=heat.colors(mxy), breaks=mxy, ylim=c(0,5), xlab = "Height (Meters)",
+   xlim=c(0,mxy), right=F, main="Histogram of Heights for Ages 12,15,& 17", las=1)
+
+```
+
+### Histograms from Randomized Data
+
+Plotting the log(normal distribution) for 1000 random numbers
+
+```{r loghis, exercise=TRUE, exercise.eval=TRUE}
+set.seed(36849)
+
+r <- rlnorm(10000)
+hist(r)
+```
+
+
+```{r lognorm, exercise=TRUE, exercise.eval=TRUE}
+# Get a random log-normal distribution
+r <- rlnorm(1000)
+
+# Get the distribution without plotting it using tighter breaks
+h <- hist(r, plot=F, breaks=c(seq(0,max(r)+1, .1)))
+
+# Plot the distribution using log scale on both axes
+plot(h$counts, log="xy", pch=23, col=colpkr[459],
+	main="Log-normal distribution",
+	xlab="Value", ylab="Frequency")
+```
+
+## Other Base Graph Customization
+
+Use this chart to add details to your base R graphs!
+
+```{r misc-code, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 25}
+# Make an empty chart
+plot(1, 1, xlim=c(1,5.5), ylim=c(0,10), type="n", ann=FALSE)
+
+# Plot digits 0-4 with increasing size and color
+text(1:5, rep(8.5,5), labels=c(0:4), cex=1:5, col=1:5)
+
+# Plot symbols 0-4 with increasing size and color
+points(1:5, rep(6,5), cex=1:5, col=1:5, pch=0:4)
+text((1:5)+0.4, rep(6,5), cex=0.6, (0:4))
+
+# Plot symbols 5-9 with labels
+points(1:5, rep(4.5,5), cex=2, pch=(5:9))
+text((1:5)+0.4, rep(4.5,5), cex=0.6, (5:9))
+
+# Plot symbols 10-14 with labels
+points(1:5, rep(3,5), cex=2, pch=(10:14))
+text((1:5)+0.4, rep(3,5), cex=0.6, (10:14))
+
+# Plot symbols 15-19 with labels
+points(1:5, rep(1.7,5), cex=2, pch=(15:19))
+text((1:5)+0.4, rep(1.7,5), cex=0.6, (15:19))
+
+# Plot symbols 20-25 with labels
+points((1:6)*0.8+0.2, rep(0.7,6), cex=2, pch=(20:25))
+text((1:6)*0.8+0.5, rep(0.7,6), cex=0.6, (20:25))
+```
+
+
+### END
+
+*You have completed the Simple Graphs in R tutorial! Happy Plotting!!*
+
+Some questions to check your understanding of some concepts introduced in this tutorial package:
+
+```{r quiz, echo=FALSE}
 quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
+  question("Which package used in this tutorial can help you manipulate and parse data?",
+    answer("MASS"),
+    answer("ggplot2"),
+    answer("tidyverse", correct = TRUE),
+    answer("codetools"),
+    allow_retry = TRUE
   ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
+  question("Which of the functions listed below are used to format and customize plots in base R?[select all that apply]",
+    answer("text", correct = TRUE),
+    answer("mean"),
+    answer("geom_point"),
+    answer("line", correct = TRUE),
+    allow_retry = TRUE
+  ),
+  question("Which argument listed below forces barplot to group bars and not stack them?",
+    answer("beside", correct = TRUE),
+    answer("right"),
+    answer("fill"),
+    answer("main"),
+    allow_retry = TRUE
+  ),
+  question("What function returns the maximum value of the object santrees?",
+    answer("hist(santrees)"),
+    answer("library(santrees)"),
+    answer("sd(santrees)"),
+    answer("max(santrees)", correct = TRUE),
+    allow_retry = TRUE
   )
 )
 ```
