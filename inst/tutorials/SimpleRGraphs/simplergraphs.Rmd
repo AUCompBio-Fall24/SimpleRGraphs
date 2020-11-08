@@ -270,7 +270,7 @@ legend("bottomright", names(santrees), cex=0.8, col=plotcols,
 ```
 
 ```{r final-plot-2-hint}
-
+mxy <- max(santrees)
 plotcols <- c("slategray2","seagreen2","orange1")
 plot(santrees$Tree2, type = "l", col = plotcols[1], ylim = range(santrees), 
      xlab = "Age (Years)", ylab = "Height (Meters)", axes = FALSE, col.lab="navy",
@@ -279,7 +279,7 @@ axis(1, at=1:11, las=2, lab=c(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20))
 axis(2, las=1, at=8*0:mxy)
 box()
 lines(santrees$Tree5, type = "l", col = plotcols[2],lty=2, lwd = 3)
-lines(santrees$Tree5, type = "l", col = plotcols[3],lty=3, lwd = 3)
+lines(santrees$Tree13, type = "l", col = plotcols[3],lty=3, lwd = 3)
 title(main = "Tree Heights Across 11 Years ", col.main = "navy", font.main = 4)
 legend("bottomright", names(santrees), cex=0.8, col=plotcols, 
    lty=1:3, lwd=3, bty="n")
@@ -553,6 +553,35 @@ hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 
 abline(v = mntree, col = colpkr[36], lwd = 2)
 ```
 
+I am not fond of the spacing at my axes, so let's turn off the `axes =` argument within `hist()` and used the `axis` function so that we can manipulation positioning with the `pos =` argument:
+
+```{r abl-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup =  "fin-bar-subset"}
+allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
+
+# Get mean of allyr into an object
+mntree<- mean(allyr)
+
+hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 12,15,& 17",
+     xlab = "Height (Meters)", axes = )
+axis(1, pos = )
+axis(2, pos = )
+# Use abline to add the mean to the histogram; using "v =" because we want a vertical line
+abline(v = mntree, col = colpkr[36], lwd = 2)
+```
+
+```{r abl-his-hint}
+allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
+
+# Get mean of allyr into an object
+mntree<- mean(allyr)
+
+hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 12,15,& 17",
+     xlab = "Height (Meters)", axes = FALSE)
+axis(1, pos = 0.02)
+axis(2, pos = 0.02)
+# Use abline to add the mean to the histogram; using "v =" because we want a vertical line
+abline(v = mntree, col = colpkr[36], lwd = 2)
+```
 
 ### Choosing Bins
 Build on the previous graph, this time forcing each height into its own bin by setting `breaks` to the max height in the data (you also may want to adjust the `ylim` values):
