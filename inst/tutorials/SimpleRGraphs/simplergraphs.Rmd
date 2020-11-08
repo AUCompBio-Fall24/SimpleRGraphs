@@ -531,8 +531,7 @@ hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 
 ```
 
 ### Choosing Bins
-Build on the previous graph, this time forcing each height into its own bin by setting 
-`breaks` to the max height in the data:
+Build on the previous graph, this time forcing each height into its own bin by setting `breaks` to the max height in the data (you also may want to adjust the `ylim` values):
 ```{r fin-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-bar-subset"}
 allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
 
@@ -556,32 +555,35 @@ mxy <-max(allyr)
   # using object holding number of heights in data (mxy)
   # right=F means that the cells are right open intervals,
   # i.e. from [1 to 2], included values from 1 up until and including (1..1.98,1.99... & 2)
-hist(allyr, col=heat.colors(mxy), breaks=mxy, ylim=c(0,5), xlab = "Height (Meters)",
+hist(allyr, col=heat.colors(mxy), breaks=mxy, ylim=c(0,20), xlab = "Height (Meters)",
    xlim=c(0,mxy), right=F, main="Histogram of Heights for Ages 12,15,& 17", las=1)
 
 ```
 
 ### Histograms from Randomized Data
 
-Plotting the log(normal distribution) for 1000 random numbers
+Plotting the [log(normal distribution)](https://en.wikipedia.org/wiki/Log-normal_distribution) 
+for 10000 random numbers
 
 ```{r loghis, exercise=TRUE, exercise.eval=TRUE}
+# Using AU zipcode as seed for random number generator
 set.seed(36849)
-
-r <- rlnorm(10000)
-hist(r)
+# Getting 10,000 random numbers with a log-normal distribution
+dstr <- rlnorm(10000)
+hist(dstr)
 ```
 
 
 ```{r lognorm, exercise=TRUE, exercise.eval=TRUE}
 # Get a random log-normal distribution
-r <- rlnorm(1000)
+dstr <- rlnorm(10000)
 
-# Get the distribution without plotting it using tighter breaks
-h <- hist(r, plot=F, breaks=c(seq(0,max(r)+1, .1)))
+# Calculate distribution, but don't plot (plot=FALSE) 
+  # Using really small breaks (by 0.1)
+hst <- hist(dstr, plot=FALSE, breaks=c(seq(0,max(dstr)+1, .1)))
 
-# Plot the distribution using log scale on both axes
-plot(h$counts, log="xy", pch=23, col=colpkr[459],
+# Using log="xy" to log transform both axes
+plot(hst$counts, log="xy", pch=18, col=colpkr[459],
 	main="Log-normal distribution",
 	xlab="Value", ylab="Frequency")
 ```
