@@ -34,13 +34,19 @@ This tutorial was adapted from [Frank McCown's](https://sites.harding.edu/fmccow
   + Histograms
   + Dot Graphs
 * Learn to manipulate and customize graphs created with base R
-* Apply rendering methods from *Week* videos to create a PDF of graphs
+* Apply rendering methods from video lectures to create a PDF of graphs
 
 **Submission**
 
-For lab assignment #8, use dataset #1 and dataset #2 to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots from **ONE** dataset. Submit this PDF along with your response in a text file `LAST_NAME_Reflection9.txt` to the following reflection question on Canvas:
+For lab assignment #8, use dataset #1 and dataset #2 to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots from **ONE** dataset. 
 
-*You how important it is to use the correct type of graphic to accurately represent your data, but pie graphics typically have a poor reputation in the scientific community for most data. Why do you think that is? When do you think pie graphics can be useful?*
+Submit
+
+* Your figure PDF
+* The R(Script|Notebook|Markdown) used to produce the figures
+* A text file, `LAST_NAME_Reflection9.txt`, including your response to the following reflection question on Canvas:
+
+*You know how important it is to use the correct type of graphic to accurately represent your data, but pie graphics typically have a poor reputation in the scientific community for most data. Why do you think that is? When do you think pie graphics can be useful?*
 
 ## Getting Started
 
