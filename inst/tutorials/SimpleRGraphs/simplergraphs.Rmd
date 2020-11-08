@@ -388,8 +388,8 @@ legend("topleft", ncol = 4,
 
 ```
 
-Later in the tutorial, I will demonstrated adjusting the margins to make room to add the legend adjacent to the graph, so that we don't 
-worry about our legend covering features of our graph.
+Later in the tutorial, we will explore how to add the legend adjacent to the graph, so that we don't 
+worry about our legend covering features of our graph. You can also change the margins of the plot using the `par` function
 
 While we are here, let's try a graph of `santrees` with horizontal bars (this way there will be space for the legend on the graph):
 ```{r horiz-bar,exercise=TRUE, exercise.eval=TRUE, exercise.setup = "fin-line-subset"}
