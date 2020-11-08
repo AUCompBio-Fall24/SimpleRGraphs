@@ -625,6 +625,8 @@ text((1:6)*0.8+0.5, rep(0.7,6), cex=0.6, (20:25))
 
 *You have completed the Simple Graphs in R tutorial! Happy Plotting!!*
 
+After a quick quiz below, return to the **Purpose** tab and try out your new skills for your lab submission. 
+
 Some questions to check your understanding of some concepts introduced in this tutorial package:
 
 ```{r quiz, echo=FALSE}
