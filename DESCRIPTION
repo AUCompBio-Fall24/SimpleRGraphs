@@ -9,8 +9,4 @@ Encoding: UTF-8
 LazyData: true
 Suggests: 
     learnr
-Imports: 
-    WILD7150 (>= 0.1.0)
-Remotes:
-    url::https://github.com/adc0032/WILD7150/blob/master/WILD7150_0.1.0.tgz
 License: MIT + file LICENSE
