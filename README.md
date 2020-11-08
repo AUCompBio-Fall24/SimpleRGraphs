@@ -31,8 +31,8 @@ library(learnr)
 
 ``` r
 # install.packages("devtools")
+library(devtools)
 devtools::install_github("adc0032/SimpleRGraphs")
-library(SimpleRGraphs)
 ```
 
 **Third**: This tutorial package has an accompanying data package that
@@ -40,7 +40,6 @@ can be accessed from [GitHub](https://github.com/) with:
 
 ``` r
 devtools::install_github("adc0032/WILD7150")
-library(WILD7150)
 ```
 
 Running
@@ -49,5 +48,9 @@ Running
 To start the tutorial, run the following command in your console:
 
 ``` r
-learnr::run_tutorial("hello", package = "learnr")
+learnr::run_tutorial("simplergraphs", package = "SimpleRGraphs")
 ```
+
+Additionally, you should now have a “Tutorial” tab, where you can access
+“Simple Graphs in R” by clicking **Start Tutorial** ![Tutorial
+Pane](images/tutorialpane.png)
