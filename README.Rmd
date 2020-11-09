@@ -20,9 +20,33 @@ knitr::opts_chunk$set(
 
 The goal of SimpleRGraphs is to learn base R functions that will help visualize data in a step-wise, interactive tutorial.
 
+## BIOL 5800/6800 Students
+Once complete, this tutorial should address the **following learning objectives**:
+
+* Learn to create different graphs using basic R functions
+  + Line Graphs
+  + Bar Graphs 
+  + Pie Graphs
+  + Histograms
+  + Dot Graphs
+* Learn to manipulate and customize graphs created with base R
+* Apply rendering methods from video lectures to create a PDF of graphs
+
+**Submission**
+
+For lab assignment #8, use `pickygrasshoppers` and `hormonaltrees` to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots from **ONE** dataset. 
+
+Submit:
+
+* Your figure PDF
+* The R(Script|Notebook|Markdown) used to produce the figures
+* A text file, `LAST_NAME_Reflection9.txt`, including your response to the following reflection question on Canvas:
+
+*You know how important it is to use the correct type of graphic to accurately represent your data, but pie graphics typically have a poor reputation in the scientific community for most data. Why do you think that is? When do you think pie graphics can be useful?*
+
 ## Installation
 
-*If you do not have `learnr`, `devtools` and `tidyverse` installed already, use the commented(#) lines in the code chunks below **before** running `library()`*
+_If you do not have `learnr` & `devtools` installed already, use the commented(#) lines in the code chunks below **before** running `library()`_
 
 **First**: You will need `learnr` to run this tutorial (or create your own - [learnr documentation](https://rstudio.github.io/learnr/index.html)):
 
@@ -46,13 +70,15 @@ devtools::install_github("adc0032/SimpleRGraphs")
 ```r
 devtools::install_github("adc0032/WILD7150")
 ```
+The package also requires `tidyverse`, but you should be prompted to install if you do not have it installed already. 
 
 ## Running
 
-To start the tutorial, run the following command in your console:
+To start the tutorial **in a web browser (pref. Google Chrome)**, run the following command in your console:
 ```r
 learnr::run_tutorial("simplergraphs", package = "SimpleRGraphs")
 ```
 
 Additionally, you should now have a "Tutorial" tab, where you can access "Simple Graphs in R" by clicking **Start Tutorial**
+This will start the tutorial **in an Rstudio window**
 ![Tutorial Pane](images/tutorialpane.png)

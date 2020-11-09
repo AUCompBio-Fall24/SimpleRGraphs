@@ -6,7 +6,7 @@ output:
     allow_skip: true
 runtime: shiny_prerendered
 description: >
-  Learn how to produces different types of graphs with base R. This tutorial     was heavily insipired by Frank McCowns's site Producing Simple Graphs in with   R. The tutorial depends on the WILD7150 dataset, currently hosted on github. 
+  Learn how to produces different types of graphs with base R. This tutorial was heavily insipired by Frank McCowns's site Producing Simple Graphs in with   R. The tutorial depends on the WILD7150 dataset, currently hosted on github. 
 ---
 
 ```{r setup, include=FALSE}
