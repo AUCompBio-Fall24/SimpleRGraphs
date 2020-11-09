@@ -1,2 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^inst/tutorials/<simplergraphs>/-simplergraphs-\.Rmd$
+^inst/tutorials/simplergraphs/simplergraphs\.Rmd$
+^LICENSE\.md$
+^README\.Rmd$
