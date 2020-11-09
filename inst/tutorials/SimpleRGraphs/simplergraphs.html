@@ -118,7 +118,7 @@ $(document).ready(function () {
 
 <div id="section-purpose" class="section level2">
 <h2>Purpose</h2>
-<p>This tutorial was adapted from <a href="https://sites.harding.edu/fmccown/r/">Frank McCown’s</a> site on simple graphs in R. Once complete, students should be familiar with the <strong>following learning objectives</strong>:</p>
+<p>This tutorial was adapted from <a href="https://sites.harding.edu/fmccown/r/">Frank McCown’s</a> site on simple graphs in R. Once the tutorial and lab assignment are complete, students should be familiar with the <strong>following learning objectives</strong>:</p>
 <ul>
 <li>Learn to create different graphs using basic R functions
 <ul>
@@ -132,12 +132,12 @@ $(document).ready(function () {
 <li>Apply rendering methods from video lectures to create a PDF of graphs</li>
 </ul>
 <p><strong>Submission</strong></p>
-<p>For lab assignment #8, use dataset #1 and dataset #2 to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week’s lecture videos to render a PDF of plots from <strong>ONE</strong> dataset.</p>
-<p>Submit</p>
+<p>For lab assignment #8, use <code>pickygrasshoppers</code> and <code>hormonaltrees</code> to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week’s lecture videos to render a PDF of plots from <strong>ONE</strong> dataset.</p>
+<p>Submit:</p>
 <ul>
 <li>Your figure PDF</li>
 <li>The R(Script|Notebook|Markdown) used to produce the figures</li>
-<li>A text file, <code>LAST_NAME_Reflection9.txt</code>, including your response to the following reflection question on Canvas:</li>
+<li>A text file, <code>LAST_NAME_Reflection8.txt</code>, including your response to the following reflection question on Canvas:</li>
 </ul>
 <p><em>You know how important it is to use the correct type of graphic to accurately represent your data, but pie graphics typically have a poor reputation in the scientific community for most data. Why do you think that is? When do you think pie graphics can be useful?</em></p>
 </div>
@@ -179,7 +179,7 @@ $(document).ready(function () {
 <h2>Line Graphs</h2>
 <div id="section-subsetting" class="section level3">
 <h3>Subsetting</h3>
-<p>Let’s say we are interested in looking at tree height for individual 5 at all ages in our data.</p>
+<p>Let’s say we are interested in looking at tree height for individual 5 at all ages in our data. Within tidyverse are a multitude of useful packages! Below we are piping <code>%&gt;%</code> our dataset into dplyr’s <code>filter</code> function. Don’t worry if you don’t understand this syntax, you haven’t learned about <code>dplyr</code> in this course!</p>
 <p>Modify the following code to subset “individual 5” data into vector <code>ind5</code>:</p>
 <div class="tutorial-exercise" data-label="subset-ind5" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Define the ind5 vector with a subset of the data for individual 5
@@ -320,7 +320,7 @@ title(ylab = &quot;Height(Meters)&quot;, col.lab=&quot;navy&quot;)
 legend(&quot;bottomright&quot;, names(santrees), col=plotcols, lty = 1:3)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"fin-line-subset","exercise.checker":"NULL"}</script>
 </div>
-<p>This code accomplishes the same goal. Remove any unused objects, and use line 10 to ensure that data from the third tree is included in the graph:</p>
+<p>The code below accomplishes the same goal. Remove any unused objects, and use line 10 to ensure that data from the third tree in our subset,<code>Tree13</code>, is included in the graph:</p>
 <div class="tutorial-exercise" data-label="final-plot-2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="15">
 <pre class="text"><code>mxy &lt;- max(santrees)
 plotcols &lt;- c(&quot;slategray2&quot;,&quot;seagreen2&quot;,&quot;orange1&quot;)
@@ -381,7 +381,7 @@ barplot(santrees$Tree5,
 </div>
 <div id="section-height-by-year-for-three-trees" class="section level3">
 <h3>Height by Year for Three Trees</h3>
-<p>Let’s look at multiple trees with <code>santrees</code> we made in the previous section:</p>
+<p>Let’s look at multiple (3) trees with <code>santrees</code> we made in the previous section:</p>
 <div class="tutorial-exercise" data-label="bar-by-tree" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Converting santrees to a matrix, using beside=TRUE to prevent stacking, using rainbow color scales for bar fill
 barplot(as.matrix(santrees), main=&quot;Trees&quot;, ylab= &quot;Height (Meters)&quot;,
@@ -390,7 +390,7 @@ barplot(as.matrix(santrees), main=&quot;Trees&quot;, ylab= &quot;Height (Meters)
 # Place the legend at the top-left corner, filling with the rainbow color scales 
 legend(&quot;topleft&quot;, c(&quot;10Y&quot;,&quot;11Y&quot;,&quot;12Y&quot;,&quot;13Y&quot;,&quot;14Y&quot;,&quot;15Y&quot;,&quot;16Y&quot;,&quot;17Y&quot;,&quot;18Y&quot;,&quot;19Y&quot;,&quot;20Y&quot;), cex=0.6, 
     fill=rainbow(11))</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"fin-line-subset","exercise.checker":"NULL"}</script>
 </div>
 </div>
 <div id="section-height-by-individual-for-three-ages" class="section level3">
