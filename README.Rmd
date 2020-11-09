@@ -46,6 +46,7 @@ Submit:
 
 ## Installation
 
+This tutorial was built in and works within Rstudio
 **Mac Users will need Xcode developer tools from the App store in order to use `devtools`**
 
 _If you do not have `learnr` & `devtools` installed already, use the commented(#) lines in the code chunks below **before** running `library()`_

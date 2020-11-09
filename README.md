@@ -46,8 +46,9 @@ that is? When do you think pie graphics can be useful?*
 
 ## Installation
 
-**Mac Users will need Xcode developer tools from the App store in order
-to use `devtools`**
+This tutorial was built in and works within Rstudio **Mac Users will
+need Xcode developer tools from the App store in order to use
+`devtools`**
 
 *If you do not have `learnr` & `devtools` installed already, use the
 commented(\#) lines in the code chunks below **before** running
