@@ -38,9 +38,9 @@ This tutorial was adapted from [Frank McCown's](https://sites.harding.edu/fmccow
 
 **Submission**
 
-For lab assignment #8, use dataset #1 and dataset #2 to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots from **ONE** dataset. 
+For lab assignment #8, use `pickygrasshoppers` and `hormonaltrees` to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots from **ONE** dataset. 
 
-Submit
+Submit:
 
 * Your figure PDF
 * The R(Script|Notebook|Markdown) used to produce the figures
