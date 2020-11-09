@@ -1,8 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-SimpleRGraphs
-=============
+# SimpleRGraphs
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -10,8 +9,7 @@ SimpleRGraphs
 The goal of SimpleRGraphs is to learn base R functions that will help
 visualize data in a step-wise, interactive tutorial.
 
-BIOL 5800/6800 Students
------------------------
+## BIOL 5800/6800 Students
 
 Once complete, this assignment should address the **following learning
 objectives**:
@@ -46,8 +44,7 @@ accurately represent your data, but pie graphics typically have a poor
 reputation in the scientific community for most data. Why do you think
 that is? When do you think pie graphics can be useful?*
 
-Installation
-------------
+## Installation
 
 **Mac Users will need Xcode developer tools from the App store in order
 to use `devtools`**
@@ -61,7 +58,9 @@ own - [learnr
 documentation](https://rstudio.github.io/learnr/index.html)):
 
 ``` r
-# install.packages("learnr")
+# Run the install line ONCE
+install.packages("learnr")
+
 library(learnr)
 ```
 
@@ -69,7 +68,9 @@ library(learnr)
 [GitHub](https://github.com/) with devtools:
 
 ``` r
-# install.packages("devtools")
+# Run the install line ONCE
+install.packages("devtools")
+
 library(devtools)
 devtools::install_github("adc0032/SimpleRGraphs")
 ```
@@ -84,8 +85,7 @@ devtools::install_github("adc0032/WILD7150")
 The package also requires `tidyverse`, but you should be prompted to
 install if you do not have it installed already.
 
-Running
--------
+## Running
 
 To start the tutorial **in a web browser (pref. Google Chrome)**, run
 the following command in your console:
