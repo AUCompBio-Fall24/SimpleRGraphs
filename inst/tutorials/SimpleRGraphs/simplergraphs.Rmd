@@ -555,7 +555,7 @@ abline(v = mntree, col = colpkr[36], lwd = 2)
 
 I am not fond of the spacing at my axes, so let's turn off the `axes =` argument within `hist()` and used the `axis` function so that we can manipulation positioning with the `pos =` argument:
 
-```{r abl-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup =  "fin-bar-subset"}
+```{r abl-ax-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup =  "fin-bar-subset"}
 allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
 
 # Get mean of allyr into an object
@@ -569,7 +569,7 @@ axis(2, pos = )
 abline(v = mntree, col = colpkr[36], lwd = 2)
 ```
 
-```{r abl-his-hint}
+```{r abl-ax-his-hint}
 allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
 
 # Get mean of allyr into an object
