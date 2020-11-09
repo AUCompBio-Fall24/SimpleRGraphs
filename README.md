@@ -13,7 +13,7 @@ visualize data in a step-wise, interactive tutorial.
 BIOL 5800/6800 Students
 -----------------------
 
-Once complete, this tutorial should address the **following learning
+Once complete, this assignment should address the **following learning
 objectives**:
 
 -   Learn to create different graphs using basic R functions
@@ -38,7 +38,7 @@ Submit:
 
 -   Your figure PDF
 -   The R(Script\|Notebook\|Markdown) used to produce the figures
--   A text file, `LAST_NAME_Reflection9.txt`, including your response to
+-   A text file, `LAST_NAME_Reflection8.txt`, including your response to
     the following reflection question on Canvas:
 
 *You know how important it is to use the correct type of graphic to
@@ -48,6 +48,9 @@ that is? When do you think pie graphics can be useful?*
 
 Installation
 ------------
+
+**Mac Users will need Xcode developer tools from the App store in order
+to use `devtools`**
 
 *If you do not have `learnr` & `devtools` installed already, use the
 commented(\#) lines in the code chunks below **before** running
