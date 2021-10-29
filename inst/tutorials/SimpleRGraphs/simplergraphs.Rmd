@@ -6,7 +6,7 @@ output:
     allow_skip: true
 runtime: shiny_prerendered
 description: >
-  Learn how to produces different types of graphs with base R. This tutorial was heavily insipired by Frank McCowns's site Producing Simple Graphs in with   R. The tutorial depends on the WILD7150 dataset, currently hosted on github. 
+  Learn how to produces different types of graphs with base R. This tutorial     was heavily insipired by Frank McCowns's site Producing Simple Graphs in with   R. The tutorial depends on the WILD7150 dataset, currently hosted on github. 
 ---
 
 ```{r setup, include=FALSE}
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Purpose
 
-This tutorial was adapted from [Frank McCown's](https://sites.harding.edu/fmccown/r/) site on simple graphs in R. Once the tutorial and lab assignment are complete, students should be familiar with the **following learning objectives**:
+This tutorial was adapted from [Frank McCown's](https://sites.harding.edu/fmccown/r/) site on simple graphs in R. Once complete, students should be familiar with the **following learning objectives**:
  
 * Learn to create different graphs using basic R functions
   + Line Graphs
@@ -34,19 +34,13 @@ This tutorial was adapted from [Frank McCown's](https://sites.harding.edu/fmccow
   + Histograms
   + Dot Graphs
 * Learn to manipulate and customize graphs created with base R
-* Apply rendering methods from video lectures to create a PDF of graphs
+* Apply rendering methods from *Week* videos to create a PDF of graphs
 
 **Submission**
 
-For lab assignment #8, use `pickygrasshoppers` and `hormonaltrees` to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots from **ONE** dataset. 
+For lab assignment #8, use `lotuscountry` AND `pickygrasshoppers` OR `hormonaltrees` to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots from **ONE** dataset. Submit this PDF along with your response in a text file `LAST_NAME_Reflection8.txt` to the following reflection question on Canvas:
 
-Submit:
-
-* Your figure PDF
-* The R(Script|Notebook|Markdown) used to produce the figures
-* A text file, `LAST_NAME_Reflection8.txt`, including your response to the following reflection question on Canvas:
-
-*You know how important it is to use the correct type of graphic to accurately represent your data, but pie graphics typically have a poor reputation in the scientific community for most data. Why do you think that is? When do you think pie graphics can be useful?*
+*You how important it is to use the correct type of graphic to accurately represent your data, but pie graphics typically have a poor reputation in the scientific community for most data. Why do you think that is? When do you think pie graphics can be useful?*
 
 ## Getting Started
 
@@ -95,9 +89,6 @@ head(agingtrees)
 ### Subsetting
 
 Let's say we are interested in looking at tree height for individual 5 at all ages in our data.
-Within tidyverse are a multitude of useful packages! 
-Below we are piping `%>%` our dataset into dplyr's `filter` function. 
-Don't worry if you don't understand this syntax, you haven't learned about `dplyr` in this course!
 
 Modify the following code to subset "individual 5" data into vector `ind5`:
 
@@ -253,8 +244,8 @@ title(ylab = "Height(Meters)", col.lab="navy")
 legend("bottomright", names(santrees), col=plotcols, lty = 1:3)
 ```
 
-The code below accomplishes the same goal. 
-Remove any unused objects, and use line 10 to ensure that data from the third tree in our subset,`Tree13`,  is included in the graph:
+This code accomplishes the same goal. 
+Remove any unused objects, and use line 10 to ensure that data from the third tree is included in the graph:
 
 ```{r final-plot-2, exercise=TRUE, exercise.eval=FALSE, exercise.lines = 15, exercise.setup = "fin-line-subset"}
 mxy <- max(santrees)
@@ -273,7 +264,7 @@ legend("bottomright", names(santrees), cex=0.8, col=plotcols,
 ```
 
 ```{r final-plot-2-hint}
-mxy <- max(santrees)
+
 plotcols <- c("slategray2","seagreen2","orange1")
 plot(santrees$Tree2, type = "l", col = plotcols[1], ylim = range(santrees), 
      xlab = "Age (Years)", ylab = "Height (Meters)", axes = FALSE, col.lab="navy",
@@ -282,7 +273,7 @@ axis(1, at=1:11, las=2, lab=c(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20))
 axis(2, las=1, at=8*0:mxy)
 box()
 lines(santrees$Tree5, type = "l", col = plotcols[2],lty=2, lwd = 3)
-lines(santrees$Tree13, type = "l", col = plotcols[3],lty=3, lwd = 3)
+lines(santrees$Tree5, type = "l", col = plotcols[3],lty=3, lwd = 3)
 title(main = "Tree Heights Across 11 Years ", col.main = "navy", font.main = 4)
 legend("bottomright", names(santrees), cex=0.8, col=plotcols, 
    lty=1:3, lwd=3, bty="n")
@@ -315,9 +306,9 @@ barplot(santrees$Tree5, main="Tree 5 Heights Across 11 Years", xlab="Age (Years)
 
 ### Height by Year for Three Trees
 
-Let's look at multiple (3) trees with `santrees` we made in the previous section:
+Let's look at multiple trees with `santrees` we made in the previous section:
 
-```{r bar-by-tree, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-line-subset"}
+```{r bar-by-tree, exercise=TRUE, exercise.eval=FALSE}
 
 # Converting santrees to a matrix, using beside=TRUE to prevent stacking, using rainbow color scales for bar fill
 barplot(as.matrix(santrees), main="Trees", ylab= "Height (Meters)",
@@ -391,8 +382,8 @@ legend("topleft", ncol = 4,
 
 ```
 
-Later in the tutorial, we will explore how to add the legend adjacent to the graph, so that we don't 
-worry about our legend covering features of our graph. You can also change the margins of the plot using the `par` function
+Later in the tutorial, I will demonstrated adjusting the margins to make room to add the legend adjacent to the graph, so that we don't 
+worry about our legend covering features of our graph.
 
 While we are here, let's try a graph of `santrees` with horizontal bars (this way there will be space for the legend on the graph):
 ```{r horiz-bar,exercise=TRUE, exercise.eval=TRUE, exercise.setup = "fin-line-subset"}
@@ -541,51 +532,6 @@ hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 
      xlab = "Height (Meters)")
 ```
 
-### Plotting Means
-
-I'd like to add the mean value for the data to the histogram. We can accomplish this with the `abline` function:
-```{r abl-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup =  "fin-bar-subset"}
-allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
-
-# Get mean of allyr into an object
-mntree<- mean(allyr)
-
-hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 12,15,& 17",
-     xlab = "Height (Meters)")
-# Use abline to add the mean to the histogram; using "v =" because we want a vertical line
-abline(v = mntree, col = colpkr[36], lwd = 2)
-```
-
-I am not fond of the spacing at my axes, so let's turn off the `axes =` argument within `hist()` and used the `axis` function so that we can manipulation positioning with the `pos =` argument:
-
-```{r abl-ax-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup =  "fin-bar-subset"}
-allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
-
-# Get mean of allyr into an object
-mntree<- mean(allyr)
-
-hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 12,15,& 17",
-     xlab = "Height (Meters)", axes = )
-axis(1, pos = )
-axis(2, pos = )
-# Use abline to add the mean to the histogram; using "v =" because we want a vertical line
-abline(v = mntree, col = colpkr[36], lwd = 2)
-```
-
-```{r abl-ax-his-hint}
-allyr <- c(tresages$Yr19, tresages$Yr15, tresages$Yr12)
-
-# Get mean of allyr into an object
-mntree<- mean(allyr)
-
-hist(allyr, col=colpkr[48], ylim=c(0,20), main = "Histogram of Heights for Ages 12,15,& 17",
-     xlab = "Height (Meters)", axes = FALSE)
-axis(1, pos = 0.02)
-axis(2, pos = 0.02)
-# Use abline to add the mean to the histogram; using "v =" because we want a vertical line
-abline(v = mntree, col = colpkr[36], lwd = 2)
-```
-
 ### Choosing Bins
 Build on the previous graph, this time forcing each height into its own bin by setting `breaks` to the max height in the data (you also may want to adjust the `ylim` values):
 ```{r fin-his, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-bar-subset"}
@@ -615,7 +561,6 @@ hist(allyr, col=heat.colors(mxy), breaks=mxy, ylim=c(0,20), xlab = "Height (Mete
    xlim=c(0,mxy), right=F, main="Histogram of Heights for Ages 12,15,& 17", las=1)
 
 ```
-
 
 ### Histograms from Randomized Data
 
