@@ -26,7 +26,7 @@ objectives**:
 
 **Submission**
 
-For lab assignment \#8, use `pickygrasshoppers` and `hormonaltrees` to
+For lab assignment \#8, use `lotuscountry` AND `pickygrasshoppers` OR `hormonaltrees` to
 create graphs similar to those produced in this tutorial. Choose an
 appropriate subset of the data for the type of graph you are making. Use
 this week’s lecture videos to render a PDF of plots from **ONE**
