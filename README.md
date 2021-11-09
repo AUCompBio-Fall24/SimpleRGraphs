@@ -27,7 +27,7 @@ objectives**:
 **Submission**
 
 For lab assignment #8, use `pickygrasshoppers` `hormonaltrees` or
-`lotuscountry`to create graphs similar to those produced in this
+`lotuscountry` to create graphs similar to those produced in this
 tutorial. Choose an appropriate subset of the data for the type of graph
 you are making. Use this week’s lecture videos to render a PDF of plots
 from **ONE** dataset.
@@ -46,19 +46,25 @@ that is? When do you think pie graphics can be useful?*
 
 ## Installation
 
-This tutorial was built in and works within Rstudio.  
-The packages developed for this tutorial are hosted on Github, so you
-will need to make sure that your Rstudio and Github are linked for a
-smooth installation.
+#### Linking your Github and Rstudio
 
-If you do not have Github and Rstudio configured to work together,
+This tutorial was built in and works within Rstudio but it also works in
+web browsers. The packages developed for this tutorial are hosted on
+Github, so you will need to make sure that your Rstudio and Github are
+linked for a *smooth* installation.
+
+**If you do not have Github and Rstudio configured to work together,
 please visit [this
 gist](https://gist.github.com/z3tt/3dab3535007acf108391649766409421) to
-get setup!
+get setup!**
 
-**Mac Users will need Xcode developer tools from the App store in order
-to use `devtools`**  
-**Windows Users will need Rtools from CRAN in order to use `devtools`**
+#### Programs to download outside of Rstudio
+
+**Mac Users** will need Xcode developer tools from the App store in
+order to use `devtools` **Windows Users** will need Rtools from CRAN in
+order to use `devtools`
+
+#### Now install the tutorial!
 
 *If you do not have `learnr` & `devtools` installed already, use the
 commented(#) lines in the code chunks below **before** running
