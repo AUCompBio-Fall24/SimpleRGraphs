@@ -51,18 +51,19 @@ that is? When do you think pie graphics can be useful?*
 This tutorial was built in and works within Rstudio but it also works in
 web browsers. The packages developed for this tutorial are hosted on
 Github, so you will need to make sure that your Rstudio and Github are
-linked for a *smooth* installation.
-
-**If you do not have Github and Rstudio configured to work together,
-please visit [this
+linked for a *smooth* installation. **If you do not have Github and
+Rstudio configured to work together, please visit [this
 gist](https://gist.github.com/z3tt/3dab3535007acf108391649766409421) to
 get setup!**
 
 #### Programs to download outside of Rstudio
 
-**Mac Users** will need Xcode developer tools from the App store in
-order to use `devtools` **Windows Users** will need Rtools from CRAN in
-order to use `devtools`
+**Mac Users** will need [Xcode developer tools from the App
+store](https://developer.apple.com/xcode/features/) in order to use
+`devtools`  
+**Windows Users** will need [Rtools from
+CRAN](https://cran.r-project.org/bin/windows/Rtools/) in order to use
+`devtools`
 
 #### Now install the tutorial!
 
