@@ -38,7 +38,7 @@ This tutorial was adapted from [Frank McCown's](https://sites.harding.edu/fmccow
 
 **Submission**
 
-For lab assignment #8, use `lotuscountry` AND `pickygrasshoppers` OR `hormonaltrees` to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots from **ONE** dataset. Submit this PDF along with your response in a text file `LAST_NAME_Reflection8.txt` to the following reflection question on Canvas:
+For lab assignment #8, use `lotuscountry` `pickygrasshoppers` OR `hormonaltrees` to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots (at least two) from **ONE** dataset. Submit this PDF along with your response in a text file `LAST_NAME_Reflection8.txt` to the following reflection question on Canvas:
 
 *You how important it is to use the correct type of graphic to accurately represent your data, but pie graphics typically have a poor reputation in the scientific community for most data. Why do you think that is? When do you think pie graphics can be useful?*
 
@@ -264,7 +264,7 @@ legend("bottomright", names(santrees), cex=0.8, col=plotcols,
 ```
 
 ```{r final-plot-2-hint}
-
+mxy <- max(santrees)
 plotcols <- c("slategray2","seagreen2","orange1")
 plot(santrees$Tree2, type = "l", col = plotcols[1], ylim = range(santrees), 
      xlab = "Age (Years)", ylab = "Height (Meters)", axes = FALSE, col.lab="navy",
@@ -308,7 +308,7 @@ barplot(santrees$Tree5, main="Tree 5 Heights Across 11 Years", xlab="Age (Years)
 
 Let's look at multiple trees with `santrees` we made in the previous section:
 
-```{r bar-by-tree, exercise=TRUE, exercise.eval=FALSE}
+```{r bar-by-tree, exercise=TRUE, exercise.eval=FALSE, exercise.setup = "fin-line-subset"}
 
 # Converting santrees to a matrix, using beside=TRUE to prevent stacking, using rainbow color scales for bar fill
 barplot(as.matrix(santrees), main="Trees", ylab= "Height (Meters)",
