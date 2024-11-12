@@ -7,3 +7,4 @@ inst/tutorials/.DS_Store
 inst/tutorials/SimpleRGraphs/.DS_Store
 inst/.DS_Store
 .DS_Store
+.Rbuildignore

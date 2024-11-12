@@ -6,7 +6,7 @@ output:
     allow_skip: true
 runtime: shiny_prerendered
 description: >
-  Learn how to produces different types of graphs with base R. This tutorial     was heavily insipired by Frank McCowns's site Producing Simple Graphs in with   R. The tutorial depends on the WILD7150 dataset, currently hosted on github. 
+  Learn how to produces different types of graphs with base R. This tutorial was heavily insipired by Frank McCowns's site Producing Simple Graphs in with R. The tutorial depends on the WILD7150 dataset, currently hosted on github. 
 ---
 
 ```{r setup, include=FALSE}
@@ -36,21 +36,13 @@ This tutorial was adapted from [Frank McCown's](https://sites.harding.edu/fmccow
 * Learn to manipulate and customize graphs created with base R
 * Apply rendering methods from *Week* videos to create a PDF of graphs
 
-**Submission**
-
-For lab assignment #8, use `lotuscountry` `pickygrasshoppers` OR `hormonaltrees` to create graphs similar to those produced in this tutorial. Choose an appropriate subset of the data for the type of graph you are making. Use this week's lecture videos to render a PDF of plots (at least two) from **ONE** dataset. Submit this PDF along with your response in a text file `LAST_NAME_Reflection8.txt` to the following reflection question on Canvas:
-
-*You how important it is to use the correct type of graphic to accurately represent your data, but pie graphics typically have a poor reputation in the scientific community for most data. Why do you think that is? When do you think pie graphics can be useful?*
-
 ## Getting Started
 
 This tutorial package was created in Rstudio using R markdown and integrated with an R shiny interface for an interactive experience.
 
-This tutorial package is being shared with you in **source** format, which means that editing/moving files with disrupt functionality of the code. **If you have this issue, re-install the package from Github.**  
+This tutorial package is being shared with you in **source** format, which means that editing/moving files will disrupt functionality of the code. **If you have this issue, re-install the package from Github.**  
 
 The interactive code blocks behave just as they would in R. If you get stuck somewhere, use the solution button for guidance!
-
-If you have any questions, or find any issues, please let me know at adc0032@auburn.edu! 
 
 *Here's a simple exercise with an empty code chunk provided for entering the answer.*
 
@@ -98,6 +90,12 @@ Modify the following code to subset "individual 5" data into vector `ind5`:
 
 ind5 agingtrees %>% filter(Individual == "")
 ind5
+```
+
+```{r subset-ind5-hint}
+#remember before we printed the first few lines of the file to get an idea of how it was formatted?
+head(ind5)
+#this should help you figure out how to submit for rows where Indiv is 5.
 ```
 
 ```{r subset-ind5-solution}
@@ -358,7 +356,7 @@ legend("topleft", ncol = 2,
 head(tresages)
 
 barplot(as.matrix(tresages), main="Tree Height", ylab= "Height (Meters)",
-   beside=TRUE, col=rainbow(16), ylim = c(0,max(sanages)))
+   beside=TRUE, col=rainbow(16), ylim = c(0,max(tresages)))
 legend("topleft", ncol = 4,
        c("Tree1","Tree2","Tree3","Tree4","Tree5","Tree6","Tree7","Tree8",
          "Tree9","Tree10","Tree11", "Tree12", "Tree13", "Tree14", "Tree15", "Tree16"), 
@@ -627,7 +625,7 @@ text((1:6)*0.8+0.5, rep(0.7,6), cex=0.6, (20:25))
 
 *You have completed the Simple Graphs in R tutorial! Happy Plotting!!*
 
-After a quick quiz below, return to the **Purpose** tab and try out your new skills for your lab submission. 
+After a quick quiz below, return to the **Purpose** tab and try out your new skills for your upcoming lab assignment. 
 
 Some questions to check your understanding of some concepts introduced in this tutorial package:
 
