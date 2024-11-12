@@ -11,7 +11,7 @@ visualize data in a step-wise, interactive tutorial.
 
 ## BIOL 5800/6800 Students
 
-Once complete, this assignment should address the **following learning
+Once complete, this tutorial should address the **following learning
 objectives**:
 
 -   Learn to create different graphs using basic R functions
@@ -24,44 +24,22 @@ objectives**:
 -   Apply rendering methods from video lectures to create a PDF of
     graphs
 
-**Submission**
-
-For lab assignment #8, use `pickygrasshoppers` `hormonaltrees` or
-`lotuscountry` to create graphs similar to those produced in this
-tutorial. Choose an appropriate subset of the data for the type of graph
-you are making. Use this week’s lecture videos to render a PDF of plots
-from **ONE** dataset.
-
-Submit:
-
--   Your figure PDF
--   The R(Script\|Notebook\|Markdown) used to produce the figures
--   A text file, `LAST_NAME_Reflection8.txt`, including your response to
-    the following reflection question on Canvas:
-
-*You know how important it is to use the correct type of graphic to
-accurately represent your data, but pie graphics typically have a poor
-reputation in the scientific community for most data. Why do you think
-that is? When do you think pie graphics can be useful?*
-
 ## Installation
 
 #### Linking your Github and Rstudio
 
 This tutorial was built in and works within Rstudio but it also works in
 web browsers. The packages developed for this tutorial are hosted on
-Github, so you will need to make sure that your Rstudio and Github are
-linked for a *smooth* installation. **If you do not have Github and
-Rstudio configured to work together, please visit [this
-gist](https://gist.github.com/z3tt/3dab3535007acf108391649766409421) to
-get setup!**
+Github, so you will need to install some packages to get it to work locally.
 
 #### Programs to download outside of Rstudio
 
-**Mac Users** will need [Xcode developer tools from the App
+Note: the following softwares ONLY need to be installed if you get an error when trying to install the code in the next step: 
+
+**Mac Users** may need [Xcode developer tools from the App
 store](https://developer.apple.com/xcode/features/) in order to use
 `devtools`  
-**Windows Users** will need [Rtools from
+**Windows Users** may need [Rtools from
 CRAN](https://cran.r-project.org/bin/windows/Rtools/) in order to use
 `devtools`
 
@@ -86,10 +64,11 @@ library(learnr)
 [GitHub](https://github.com/) with devtools:
 
 ``` r
-# Run the install line ONCE
+# Run the install line ONCE and then comment it out afterwards
 install.packages("devtools")
 
 library(devtools)
+# Run the install line ONCE and then comment it out afterwards
 devtools::install_github("adc0032/SimpleRGraphs")
 ```
 
@@ -97,11 +76,19 @@ devtools::install_github("adc0032/SimpleRGraphs")
 can be accessed from [GitHub](https://github.com/) with:
 
 ``` r
+# Run the install line ONCE and then comment it out afterwards
 devtools::install_github("adc0032/WILD7150")
 ```
 
 The package also requires `tidyverse`, but you should be prompted to
 install if you do not have it installed already.
+
+``` r
+# Run the install line ONCE and then comment it out afterwards
+install.packages("tidyverse")
+
+library(tidyverse)
+```
 
 ## Running
 
